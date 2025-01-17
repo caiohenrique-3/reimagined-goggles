@@ -138,15 +138,20 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
-static const char *desktopmenucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
+static const char *menucmd[] = { "wmenu-run", "-f", "monospace 16", "-p", "RUN:", NULL };
+static const char *j4[] = { "j4-dmenu-desktop", "-d",
+  "wmenu -f 'monospace 16' -p '.DESKTOP:'",
+  "--usage-log", "$HOME/.local/share/j4-dmenu-desktop/usage-log",
+  "--prune-bad-usage-log-entries",
+  "--log-file", "$HOME/.local/share/j4-dmenu-desktop/log-file", NULL };
 static const char *lf[]  = { "foot", "-e", "lf", NULL };
 static const char *thunar[]  = { "thunar", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
-	{ MODKEY,                    XKB_KEY_p,          spawn,          SHCMD("~/Scripts/tofi-run.sh") },
-	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_p,          spawn,          {.v = desktopmenucmd} },
+	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_p,          spawn,          {.v = j4} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_e,          spawn,          {.v = lf} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_E,          spawn,          {.v = thunar} },
