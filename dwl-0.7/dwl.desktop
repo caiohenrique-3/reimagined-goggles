@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=dwl
 Comment=dwm for Wayland with slstatus support
-Exec=slstatus -s | dwl
+Exec=sh -c 'echo "DWL STARTED [$(date)]" >> $HOME/.local/share/dwl/log; slstatus -s | dwl >> $HOME/.local/share/dwl/log 2>&1'
 Type=Application
